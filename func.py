@@ -15,7 +15,6 @@ async def roll(msg, number):
         # Sets die number and roll multiplier
         dieNumber = int(number[:number.find('*')])
         multiplier = int(number[number.find('*') + 1:])
-
         # Caps die and multiplier at 100 so the bot doesn't die
         if dieNumber > 100 or multiplier > 100:
             terminalOutput('Roll:\n' + '    Error: roll die cap')
@@ -30,7 +29,6 @@ async def roll(msg, number):
                     )
                 ))
             return # Do nothing
-
         # Calls RNG
         for i in range(0, multiplier):
             # Run RNG to find result
@@ -45,7 +43,22 @@ async def roll(msg, number):
     else:
         # Run RNG to find result
         rollValue = random.randrange(0, int(number)) + 1
-        rolls = rolls + '{}'.format(rollValue) 
+        rolls = rolls + '{}'.format(rollValue)
+        # Caps die and multiplier at 100 so the bot doesn't die
+        if int(number) > 100:
+            terminalOutput('Roll:\n' + '    Error: roll die cap')
+            # Send an embedded message telling user not to roll as much
+            await msg.channel.send(embed=discord.Embed(
+                title = "{0.author.name}".format(msg),
+                description = "Die is too large, cap is 100",
+                color = discord.Color.from_rgb(
+                    255,
+                    0,
+                    0
+                    )
+                ))
+            return # Do nothing
+
     terminalOutput(
         'Roll:\n    User:"{0.author.name}"'.format(msg) +
         '   Die: "{}"'.format(str(number)) +
