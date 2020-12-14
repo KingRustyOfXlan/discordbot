@@ -50,7 +50,7 @@ async def roll(msg, number):
         '   Result: "{}"'.format(str(rolls))
         )
     await msg.channel.send(embed=discord.Embed(
-        title = "{0.author}: Result".format(msg),
+        title = "{0.author.name}: Roll Result".format(msg),
         description = rolls,
         color = discord.Color.from_rgb(
             0,
