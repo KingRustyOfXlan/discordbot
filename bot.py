@@ -55,7 +55,7 @@ async def on_message(m):
 
 # Roll Command {{{
 
-    if m.content.startswith("!roll"):
+    if m.content.startswith("!roll") and m.channel.name == "dndbot":
         # Main part being taken from message
         mS = str(m.content)[6 :]
 
