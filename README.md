@@ -1,2 +1,2 @@
-# dndbot
-A Dungeons &amp; Dragon bot that is very WIP and probably won't get finished
+# discordbot
+Discord Bot for managing servers, has multiple features
